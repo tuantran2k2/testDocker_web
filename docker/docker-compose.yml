@@ -1,0 +1,14 @@
+services:
+  backend_mysql:
+    build:
+      context: ../api
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - 8000:8000
+  front_end:
+    image: nginx:1.27.0
+    ports:
+      - 3000:80
+    volumes:
+      - ../front_end/build:/usr/share/nginx/html
